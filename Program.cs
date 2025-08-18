@@ -12,8 +12,11 @@ namespace ConsoleApp3
 
             for (int i = 0; i < points.Length; i++)
             {
-                float x = (float)(random.Next(-10, 10));
-                float y = (float)(random.Next(-10, 10));
+                //float x = (float)(random.Next(-10, 10));
+                //float y = (float)(random.Next(-10, 10));
+
+                float x = random.Next(-10, 10);
+                float y= random.Next(-10, 10);
                 points[i] = new Point(x, y);
             }
 
@@ -98,10 +101,10 @@ namespace ConsoleApp3
                 for (int j = i + 1; j < threeVectors.Count; j++)
                 {
                     double angle = Vector.AngleBetweenVectors(threeVectors[i], threeVectors[j]);
+                    Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle.ToString("F4")} độ");
                     Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle} độ");
                 }
             }
-
             Console.ReadKey();
         }
     }
