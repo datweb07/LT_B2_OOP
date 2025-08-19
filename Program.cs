@@ -25,24 +25,34 @@ namespace ConsoleApp3
             {
                 Console.WriteLine($"Điểm [{i}]: ({points[i].X}, {points[i].Y})\t \t{points[i].Position()}");
             }
+            Console.WriteLine("\n");
+            //Console.WriteLine("-----------------------------------------");
 
-            int p1, p2;
+            //int p1, p2;
 
-            while (true)
+            //while (true)
+            //{
+            //    p1 = random.Next(points.Length);
+            //    p2 = random.Next(points.Length);
+            //    if (p1 != p2) break; // Lặp đến khi hai điểm khác nhau
+            //}
+
+
+            //double distance = Point.Distance(points[p1], points[p2]);
+            //Console.WriteLine("-----------------------------------------");
+            ////Console.WriteLine($"Khoảng cách giữa hai điểm ({points[p1].X}, {points[p1].Y}) và ({points[p2].X}, {points[p2].Y}): {distance}");
+            //Console.WriteLine($"Khoảng cách giữa hai điểm [{p1}] và [{p2}]: {distance}");
+            ////Console.WriteLine($"Điểm [{p1}] ({points[p1].X}, {points[p1].Y}): {points[p1].Position()} - Điểm [{p2}] ({points[p2].X}, {points[p2].Y}): {points[p2].Position()}");
+
+            for (int i = 0; i < points.Length; i++)
             {
-                p1 = random.Next(points.Length);
-                p2 = random.Next(points.Length);
-                if (p1 != p2) break; // Lặp đến khi hai điểm khác nhau
+                for (int j = i + 1; j < points.Length; j++)
+                {
+                    double distance = Point.Distance(points[i], points[j]);
+                    Console.WriteLine($"Khoảng cách giữa điểm [{i}] và điểm [{j}]: {distance}");
+                }
             }
-
-
-            double distance = Point.Distance(points[p1], points[p2]);
-            Console.WriteLine("-----------------------------------------");
-            //Console.WriteLine($"Khoảng cách giữa hai điểm ({points[p1].X}, {points[p1].Y}) và ({points[p2].X}, {points[p2].Y}): {distance}");
-            Console.WriteLine($"Khoảng cách giữa hai điểm [{p1}] và [{p2}]: {distance}");
-            //Console.WriteLine($"Điểm [{p1}] ({points[p1].X}, {points[p1].Y}): {points[p1].Position()} - Điểm [{p2}] ({points[p2].X}, {points[p2].Y}): {points[p2].Position()}");
-
-
+            
 
 
             Point[] threePoints = new Point[3];
@@ -69,14 +79,15 @@ namespace ConsoleApp3
                     count++;
                 }
             }
-            Console.WriteLine("\n3 điểm được chọn ngẫu nhiên:");
+            Console.WriteLine("\n");
+            Console.WriteLine("3 điểm được chọn ngẫu nhiên:");
             for (int i = 0; i < threePoints.Length; i++)
             {
                 Console.WriteLine($"Điểm [{index[i]}]: ({threePoints[i].X}, {threePoints[i].Y})");
             }
 
-
-            Console.WriteLine("\n3 vector được tạo từ các điểm ngẫu nhiên:");
+            Console.WriteLine("\n");
+            Console.WriteLine("3 vector được tạo từ các điểm ngẫu nhiên:");
             List<Vector> threeVectors = new List<Vector>();
             for (int i = 0; i < threePoints.Length - 1; i++)
             {
@@ -84,25 +95,28 @@ namespace ConsoleApp3
                 {
                     Vector vector = new Vector(threePoints[i], threePoints[j]);
                     threeVectors.Add(vector);
-                    Console.WriteLine($"Vector [{threeVectors.Count}]: ({vector.PointA.X}, {vector.PointA.Y}) - ({vector.PointB.X}, {vector.PointB.Y})");
+                    //Console.WriteLine($"Vector [{threeVectors.Count}]: ({vector.PointA.X}, {vector.PointA.Y}) - ({vector.PointB.X}, {vector.PointB.Y})");
+                    Console.WriteLine($"Vector [{threeVectors.Count}]: ({index[i]}) - ({index[j]})" + "\t\t" + $" ({vector.PointA.X}, {vector.PointA.Y}) - ({vector.PointB.X}, {vector.PointB.Y})");
                 }
             }
-            Console.WriteLine("-----------------------------------------");
 
+
+            Console.WriteLine("-----------------------------------------\n");
             // Kiểm tra tọa độ của Vector
             for (int i = 0; i < threeVectors.Count; i++)
             {
                 Point vectorPoint = Vector.CalculatorVector(threeVectors[i].PointA, threeVectors[i].PointB);
                 Console.WriteLine($"Vector [{i + 1}]: ({vectorPoint.X}, {vectorPoint.Y})");
             }
+            Console.WriteLine();
             // Kiểm tra góc giữa các Vector
             for (int i = 0; i < threeVectors.Count - 1; i++)
             {
                 for (int j = i + 1; j < threeVectors.Count; j++)
                 {
                     double angle = Vector.AngleBetweenVectors(threeVectors[i], threeVectors[j]);
-                    Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle.ToString("F4")} độ");
-                    Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle} độ");
+                    //Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle.ToString("F4")} độ");
+                    Console.WriteLine($"Góc giữa Vector [{i + 1}] - [{j + 1}]: {angle } độ");
                 }
             }
             Console.ReadKey();
